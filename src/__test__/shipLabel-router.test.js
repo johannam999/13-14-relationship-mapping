@@ -146,6 +146,15 @@ describe('api/labels', () => {
             });
         });
     });
+    test('404 due to empty id ', () => {
+      return pCreateMockLabel()
+        .then(() => {
+          return superagent.get(`${apiURL}/`)
+            .catch((error) => {
+              expect(error.status).toEqual(404);
+            });
+        });
+    });
     test('400 due to bad request ', () => {
       return pCreateMockLabel()
         .then((label) => {
@@ -169,11 +178,13 @@ describe('api/labels', () => {
     });
   });
 });
+
 //   test('404 due to invalid id ', () => {
 //     return superagent.delete(`${apiURL}/invalidId`)
 //       .then(Promise.reject)
 //       .catch((response) => {
 //         expect(response.status).toEqual(404);
+//         expect(response.body).toEqual({});
 //       });
 //   });
 // });

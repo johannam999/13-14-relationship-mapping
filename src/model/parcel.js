@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'; // import mongoose from module, 
 
-const shipLabelSchema = mongoose.Schema({ // create model with properties
+const parcelSchema = mongoose.Schema({ // create model with properties
   firstName: {
     type: String,
     required: true,
@@ -20,12 +20,12 @@ const shipLabelSchema = mongoose.Schema({ // create model with properties
     type: Date,
     default: () => new Date(),
   },
-  // postOffice: [
-  //   {
-  //     type: mongoose.Schema.Types.ObjectId, ref: 'label',
-  //   },
-  // ],
+  shipLabel: [
+    {
+      type: mongoose.Schema.Types.ObjectId, ref: 'label',
+    },
+  ],
 });
 
-export default mongoose.model('label', shipLabelSchema); // exporting module, default only exports one module
+export default mongoose.model('parcel', parcelSchema); // exporting module, default only exports one module
 

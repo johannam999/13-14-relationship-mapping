@@ -3,14 +3,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import logger from './logger';
-import shipLabelRoutes from '../route/shipLabel-router';
+import parcelRouter from '../route/parcel-router';
 import errorMiddleware from './error-middleware';
 
 const app = express(); // assign express to app
 let server = null;
 
 
-app.use(shipLabelRoutes);
+app.use(parcelRouter);
 
 app.all('*', (request, response) => { 
   logger.log(logger.INFO, 'Returning a 404 from the catch-all/default route');

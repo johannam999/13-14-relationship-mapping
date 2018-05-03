@@ -92,7 +92,7 @@ describe('api/labels', () => {
           expect(response.body._id).toEqual(labelToUpdate._id.toString());
         });    
     });
-    test('400 due to invalid request ', () => {
+    test('400 due to empty firstName ', () => {
       return pCreateMockLabel()
         .then((label) => {
           return superagent.put(`${apiURL}/${label._id}`)
@@ -161,18 +161,19 @@ describe('api/labels', () => {
     test('204', () => {
       return pCreateMockLabel()
         .then((label) => {
-          return superagent.delete(`${apiURL}/${label._id}`)
-            .then((response) => {
-              expect(response.status).toEqual(204);
-            });
-        });
-    });
-    test('404 due to invalid id ', () => {
-      return pCreateMockLabel()
-        .then(Promise.reject)
-        .catch((response) => {
-          expect(response.status).toEqual(404);
+          return superagent.delete(`${apiURL}/${label._id}`);
+        })
+        .then((response) => {
+          expect(response.status).toEqual(204);
         });
     });
   });
 });
+//   test('404 due to invalid id ', () => {
+//     return superagent.delete(`${apiURL}/invalidId`)
+//       .then(Promise.reject)
+//       .catch((response) => {
+//         expect(response.status).toEqual(404);
+//       });
+//   });
+// });

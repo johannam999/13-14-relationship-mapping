@@ -2,7 +2,7 @@
 
 import faker from 'faker';
 import superagent from 'superagent';
-import Parcel from '../model/parcel';
+import Parcel from '../model/parcel-model';
 import { startServer, stopServer } from '../lib/server';
 
 const apiURL = `http://localhost:${process.env.PORT}/api/parcels`;
@@ -39,6 +39,7 @@ describe('api/parcels', () => {
           expect(response.body.timestamp).toBeTruthy();
         });
     });
+
     test('409 due to duplicate firstName', () => {
       return pCreateMockParcel()
         .then((parcel) => {
@@ -92,6 +93,7 @@ describe('api/parcels', () => {
           expect(response.body._id).toEqual(parcelToUpdate._id.toString());
         });    
     });
+
     test('400 due to empty firstName ', () => {
       return pCreateMockParcel()
         .then((parcel) => {
@@ -176,15 +178,16 @@ describe('api/parcels', () => {
           expect(response.status).toEqual(204);
         });
     });
-  });
-  test('404 due to invalid id ', () => {
-    return pCreateMockParcel()
-      .then(() => {
-        return superagent.get(`${apiURL}/invalidId`)
-          .catch((error) => {
-            expect(error.status).toEqual(404);
-          });
-      });
+
+    test('404 due to invalid id ', () => {
+      return pCreateMockParcel()
+        .then(() => {
+          return superagent.get(`${apiURL}/invalidId`)
+            .catch((error) => {
+              expect(error.status).toEqual(404);
+            });
+        });
+    });
   });
 });
   

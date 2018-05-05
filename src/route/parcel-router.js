@@ -3,7 +3,7 @@
 import { Router } from 'express';
 import bodyParser from 'body-parser';
 import HttpErrors from 'http-errors';
-import Parcel from '../model/parcel'; 
+import Parcel from '../model/parcel-model'; 
 import logger from '../lib/logger';
 
 

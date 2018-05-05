@@ -13,18 +13,20 @@ const parcelSchema = mongoose.Schema({ // create model with properties
   },
   address: {
     type: String,
-    minlength: 15,
+    minlength: 10,
   },
  
   timestamp: {
     type: Date,
     default: () => new Date(),
   },
-  shipLabel: [
+  labels: [
     {
       type: mongoose.Schema.Types.ObjectId, ref: 'label',
     },
   ],
+}, {
+  usePushEach: true,
 });
 
 export default mongoose.model('parcel', parcelSchema); // exporting module, default only exports one module

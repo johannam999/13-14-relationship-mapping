@@ -26,7 +26,7 @@ const parcelSchema = mongoose.Schema({ // create model with properties
     },
   ],
 }, {
-  usePushEach: true,
+  usePushEach: true, // tells mongo to update array one at a time
 });
 
 export default mongoose.model('parcel', parcelSchema); // exporting module, default only exports one module

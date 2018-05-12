@@ -1,7 +1,7 @@
 'use strict';
 
 import faker from 'faker';
-import Parcel from '../../model/parcel-model';
+import Parcel from '../../model/parcel-model'; // skeleton constructor thats why capital letter
 
 const pCreateParcelMock = () => {
   return new Parcel({

@@ -3,21 +3,24 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import logger from './logger';
-import parcelRouter from '../route/parcel-router';
+import parcelRoutes from '../route/parcel-router';
+import labelRoutes from '../route/label-router';
 import errorMiddleware from './error-middleware';
 
-const app = express(); // assign express to app
+const app = express(); // assign express to app =server
 let server = null;
 
+// app.use(loggerMiddleware)
 
-app.use(parcelRouter);
-
-app.all('*', (request, response) => { 
+app.use(parcelRoutes); // call method use so express can access routes
+app.use(labelRoutes);
+// if the app.use wont find the routes it will send it to error-middleware
+app.all('*', (request, response) => { // built-in method
   logger.log(logger.INFO, 'Returning a 404 from the catch-all/default route');
   return response.sendStatus(404);
-});
+}); // catch all route, shows error if no route registered
 
-app.use(errorMiddleware);
+app.use(errorMiddleware);// this error is from .catch(next)
 
 const startServer = () => {
   return mongoose.connect(process.env.MONGODB_URI)

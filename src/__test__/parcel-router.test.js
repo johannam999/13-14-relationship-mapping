@@ -26,7 +26,7 @@ describe('api/parcels', () => {
       const mockParcel = {
         firstName: faker.lorem.words(10),
         lastName: faker.lorem.words(25),
-        address: faker.lorem.words(40),
+        address: faker.lorem.words(20),
       };
       return superagent.post(apiURL)
         .send(mockParcel)

@@ -34,8 +34,9 @@ function labelPreHook(done) {
   return Parcel.findById(this.parcel)
     .then((parcelFound) => {
       if (!parcelFound) {
-        throw new HttpError(404, 'category not found');
+        throw new HttpError(404, 'parcel not found');
       }
+      
       parcelFound.labels.push(this._id);
       return parcelFound.save();
     })

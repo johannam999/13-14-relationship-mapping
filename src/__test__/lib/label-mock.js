@@ -7,7 +7,7 @@ import * as parcelMock from './parcel-mock';
 
 const pCreateLabelMock = () => {
   const resultMock = {};
-
+  
   return parcelMock.pCreateParcelMock()
     .then((createdParcel) => {
       resultMock.parcel = createdParcel;
@@ -25,6 +25,7 @@ const pCreateLabelMock = () => {
     });
 };
 const pRemoveLabelMock = () => Promise.all([
+  // method returns single promise that resolves when all of the promises have resolved
   Label.remove({}),
   parcelMock.pRemoveParcelMock(),
 ]);

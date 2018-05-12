@@ -22,8 +22,7 @@ parcelRouter.post('/api/parcels', jsonParser, (request, response, next) => {
 });
 
 parcelRouter.put('/api/parcels/:id', jsonParser, (request, response, next) => {
- 
-  const options = { runValidators: true, new: true };
+  const options = { runValidators: true, new: true }; // flags from schema constructor
   return Parcel.findByIdAndUpdate(request.params.id, request.body, options)
     .then((updatedParcel) => {
       if (!updatedParcel) {
@@ -59,7 +58,8 @@ parcelRouter.delete('/api/parcels/:id', (request, response, next) => {
       }
       logger.log(logger.INFO, ' PARCEL ROUTER: -  responding with a 200 status code');
       return response.sendStatus(204);
-    });
+    })
+    .catch(next);
 });
 
 
